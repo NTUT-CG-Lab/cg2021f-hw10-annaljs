@@ -110,9 +110,6 @@ class threejsViewer {
                 texture.type = THREE.UnsignedByteType ;
                 texture.minFilter = texture.magFilter = THREE.LinearFilter ;
 
-
-
-
                 let cmtexture = new THREE.DataTexture( colormap, 256, 1) ;
 
                 uniforms = THREE.UniformsUtils.clone(shader.uniforms) ;
@@ -123,11 +120,7 @@ class threejsViewer {
 
                 uniforms['u_clim'].value.set( arg.cli_min, arg.cli_max )  ;
                 uniforms['u_renderstyle'].value = arg.renderType ;
-                uniforms['u_renderthreshold'].value = arg.isovalue ;
-
-
-
-                
+                uniforms['u_renderthreshold'].value = arg.isovalue ;        
 
                 let material = new THREE.ShaderMaterial( {
                     uniforms : uniforms,
@@ -146,9 +139,9 @@ class threejsViewer {
                 // partial parameters update
                 uniforms = mesh.material.uniforms ;
                 uniforms['u_data'].value.image = { data:volume.alpha, width:dims[0], height:dims[1], depth:dims[2]} ;
-                uniforms['u_data'].needsUpdate = true ; 
+                uniforms['u_data'].value.needsUpdate = true ; 
                 uniforms['u_cmdata'].value.image.data = colormap ;
-                uniforms['u_cmdata'].needsUpdate = true 
+                uniforms['u_cmdata'].value.needsUpdate = true 
                 uniforms['u_renderstyle'].value = arg.renderType ;
             }
 
