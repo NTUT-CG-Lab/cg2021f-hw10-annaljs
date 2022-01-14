@@ -327,7 +327,8 @@
             //MIPS or ISO
             document.querySelectorAll('input[name=rtype]').forEach((option) => {
                 option.addEventListener('click', (evt) => { 
-                    arg.renderType = 0 ;
+                    if( option.value == "iso" ) arg.renderType = 1 ;
+                    if( option.value == "mips" ) arg.renderType = 0 ;
                     controlView.updateRGBA() ;
                 })
             })
@@ -361,7 +362,7 @@
             controlView.addEventListener('change', () => {
                 if( field === null || field === undefined ) return ;
                 console.log(field.alpha)
-                modelView.renderVolume( field, getColormap, arg ) ;
+                modelView.renderVolume( field, getColormap(), arg ) ;
             })
 
             init()
